@@ -2,79 +2,171 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#14532d">
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#126b4a">
 <title>حساباتي</title>
+<link rel="manifest" href="./manifest.json">
 <style>
-:root{--green:#14532d;--light:#f3f7f3;--red:#b91c1c}*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--light);color:#17221a}
-header{background:var(--green);color:white;padding:20px 16px}header h1{margin:0 0 6px}
-main{max-width:760px;margin:auto;padding:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.card,section{background:white;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 5px #0000000d}
-.metric{font-size:13px;color:#526157}.amount{font-size:19px;font-weight:bold;margin-top:8px;overflow-wrap:anywhere}
-label{display:block;font-size:14px;margin:10px 0 5px}input,select,textarea,button{font:inherit;padding:11px;border:1px solid #cbd5ce;border-radius:8px;width:100%;background:white}
-button{background:var(--green);color:white;border:0;cursor:pointer;margin-top:10px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.item{border-bottom:1px solid #e5e7eb;padding:10px 0;display:flex;justify-content:space-between;gap:8px}.negative{color:var(--red)}.positive{color:var(--green)}
-.small{font-size:12px;color:#647067}.actions{display:flex;gap:8px}.actions button{flex:1}
-@media(max-width:500px){.cards{grid-template-columns:1fr}.amount{font-size:18px}.row{grid-template-columns:1fr}}
+:root{--g:#126b4a;--gd:#0d5238;--bg:#f3f7f4;--card:#fff;--tx:#17231c;--mut:#68756d;--bd:#dbe5de;--red:#b42318;--amber:#8a5a00}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.55}
+header{background:var(--g);color:white;padding:20px 15px}header>div,main{max-width:1050px;margin:auto}h1{margin:0;font-size:1.5rem}header p{margin:4px 0 0;opacity:.9;font-size:.92rem}
+main{padding:14px;display:grid;gap:14px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.stat,.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:15px;min-width:0}.stat .label{font-size:.84rem;color:var(--mut)}.stat strong{display:block;font-size:1.12rem;overflow-wrap:anywhere;margin-top:3px}.green{color:var(--g)}.red{color:var(--red)}h2{font-size:1.08rem;margin:0 0 12px}h3{font-size:.98rem;margin:12px 0 8px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap}.tabs button{flex:1;min-width:90px}.tabbtn{background:#e4ede7;color:#18422e}.tabbtn.active{background:var(--g);color:#fff}.pane{display:none}.pane.active{display:grid;gap:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+label{display:block;font-weight:650;font-size:.88rem;margin-bottom:5px}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;min-width:0;padding:10px;border:1px solid #cbd8cf;border-radius:9px;background:white;color:var(--tx)}textarea{resize:vertical}
+button,.filelabel{border:0;border-radius:9px;padding:9px 12px;background:var(--g);color:#fff;font-weight:650;cursor:pointer}button:hover{background:var(--gd)}button.secondary,.filelabel{background:#e6eee8;color:#17412c}button.danger{background:#fff0ef;color:var(--red);border:1px solid #f0c9c6}button.small{padding:5px 9px;font-size:.82rem}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.help,.muted{color:var(--mut);font-size:.84rem}.help{margin:7px 0 0}.notice{background:#f1f5f2;border-radius:9px;padding:10px 12px;color:#536158;font-size:.84rem}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:9px}.rowitem{padding:12px 0;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;gap:12px}.rowitem:last-child{border-bottom:0}.itemmain{min-width:0}.itemtitle{font-weight:750;overflow-wrap:anywhere}.meta{font-size:.82rem;color:var(--mut);overflow-wrap:anywhere}.side{text-align:left;flex-shrink:0}.amt{font-weight:750;white-space:nowrap}.itemactions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;margin-top:7px}.empty{text-align:center;color:var(--mut);padding:18px 0}.hidden{display:none!important}.filelabel{display:inline-flex;align-items:center;cursor:pointer}.progress{height:10px;border-radius:9px;background:#e5ece7;overflow:hidden;margin:7px 0}.progress>span{display:block;height:100%;background:var(--g);width:0}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:right;padding:9px;border-bottom:1px solid var(--bd);white-space:nowrap}th{color:var(--mut);font-weight:650}.warning{color:var(--amber)}.smalltext{font-size:.8rem;color:var(--mut)}
+@media(max-width:650px){main{padding:10px}.summary{gap:6px}.stat{padding:10px}.stat .label{font-size:.75rem}.stat strong{font-size:.92rem}.card{padding:12px}.grid,.grid3,.filters{grid-template-columns:1fr}.rowitem{gap:7px}.side{max-width:48%}.tabs button{min-width:calc(33% - 8px);font-size:.85rem}}
 </style>
 </head>
 <body>
-<header><h1>حساباتي</h1><div>إدارة دخلك ومصروفاتك — بياناتك محفوظة على هذا الجهاز</div></header>
+<header><div><h1>حساباتي</h1><p>دفتر مالي شخصي — البيانات محفوظة محليًا على جهازك</p></div></header>
 <main>
-<div class="cards">
-<div class="card"><div class="metric">الرصيد الحالي</div><div id="balance" class="amount">0</div></div>
-<div class="card"><div class="metric">إجمالي الدخل</div><div id="incomeTotal" class="amount positive">0</div></div>
-<div class="card"><div class="metric">إجمالي المصروفات</div><div id="expenseTotal" class="amount negative">0</div></div>
-</div>
-<section><h3>إضافة حركة مالية</h3>
-<form id="entryForm">
-<div class="row"><div><label for="kind">النوع</label><select id="kind"><option value="income">دخل</option><option value="expense">مصروف</option></select></div>
-<div><label for="amount">المبلغ</label><input id="amount" type="number" min="0.01" step="0.01" required placeholder="0.00"></div></div>
-<div class="row"><div><label for="category">التصنيف</label><select id="category"><option>راتب</option><option>طعام</option><option>مواصلات</option><option>سكن</option><option>فواتير</option><option>صحة</option><option>تسوق</option><option>عمل جانبي</option><option>أخرى</option></select></div>
-<div><label for="date">التاريخ</label><input id="date" type="date" required></div></div>
-<label for="note">ملاحظة (اختياري)</label><input id="note" maxlength="120" placeholder="وصف مختصر">
-<button type="submit">حفظ الحركة</button></form></section>
-<section><h3>الحركات الأخيرة</h3><div id="entries"><p class="small">لا توجد حركات بعد.</p></div></section>
-<section><h3>النسخ الاحتياطي</h3><p class="small">صدّر نسخة JSON واحفظها في مكان خاص. لا ترفعها إلى GitHub أو أي موقع عام.</p>
-<div class="actions"><button id="exportBtn" type="button">تصدير نسخة</button><button id="importBtn" type="button">استيراد نسخة</button></div>
-<input id="fileInput" type="file" accept="application/json,.json" hidden>
-<button id="clearBtn" type="button" style="background:#991b1b">حذف جميع البيانات من هذا الجهاز</button>
+<section class="summary">
+ <div class="stat"><div class="label">الرصيد الصافي بالشيكل</div><strong id="balance">0.00 ₪</strong></div>
+ <div class="stat"><div class="label">إجمالي الدخل بالشيكل</div><strong id="incomeTotal" class="green">0.00 ₪</strong></div>
+ <div class="stat"><div class="label">إجمالي المصروف بالشيكل</div><strong id="expenseTotal" class="red">0.00 ₪</strong></div>
 </section>
-<p class="small">التخزين محلي في متصفح هذا الجهاز. لا توجد مزامنة تلقائية أو تشفير خاص داخل التطبيق. امسح بيانات المتصفح بحذر لأن ذلك قد يحذف السجلات.</p>
+<nav class="tabs" aria-label="أقسام التطبيق">
+<button class="tabbtn active" data-tab="transactions">المعاملات</button>
+<button class="tabbtn" data-tab="budgets">الميزانيات</button>
+<button class="tabbtn" data-tab="reports">التقارير</button>
+<button class="tabbtn" data-tab="debts">الديون</button>
+<button class="tabbtn" data-tab="goals">الادخار</button>
+<button class="tabbtn" data-tab="backup">النسخ الاحتياطي</button>
+</nav>
+
+<section class="pane active" id="pane-transactions">
+ <section class="card" id="transactionCard">
+  <h2 id="txTitle">إضافة معاملة</h2>
+  <form id="txForm">
+   <div class="grid">
+    <div><label for="txKind">النوع</label><select id="txKind"><option value="expense">مصروف</option><option value="income">دخل</option></select></div>
+    <div><label for="txAmount">المبلغ</label><input id="txAmount" type="number" min=".01" step="any" inputmode="decimal" placeholder="مثال: 100" required></div>
+    <div><label for="txCurrency">العملة</label><select id="txCurrency"><option value="ILS">شيكل (ILS)</option><option value="USD">دولار (USD)</option><option value="EUR">يورو (EUR)</option><option value="JOD">دينار أردني (JOD)</option><option value="TRY">ليرة تركية (TRY)</option><option value="GBP">جنيه إسترليني (GBP)</option><option value="SAR">ريال سعودي (SAR)</option><option value="AED">درهم إماراتي (AED)</option><option value="OTHER">أخرى (OTHER)</option></select></div>
+    <div><label for="txRate">قيمة وحدة العملة بالشيكل</label><input id="txRate" type="number" min=".000001" step="any" value="1" required><p class="help">للشيكل اترك السعر 1. للعملات الأخرى أدخل سعر التحويل الذي تريد اعتماده.</p></div>
+    <div><label for="txCategory">التصنيف</label><select id="txCategory"><option>طعام</option><option>مواصلات</option><option>سكن وفواتير</option><option>صحة</option><option>تسوق</option><option>تعليم</option><option>راتب</option><option>عمل إضافي</option><option>تحويل</option><option>أخرى</option></select></div>
+    <div><label for="txDate">التاريخ</label><input id="txDate" type="date" required></div>
+    <div style="grid-column:1/-1"><label for="txNote">ملاحظة (اختياري)</label><input id="txNote" maxlength="250" placeholder="تفاصيل مختصرة"></div>
+   </div>
+   <div class="actions"><button type="submit" id="txSubmit">حفظ المعاملة</button><button type="button" class="secondary hidden" id="txCancel">إلغاء التعديل</button></div>
+  </form>
+ </section>
+ <section class="card">
+  <h2>سجل المعاملات</h2>
+  <div class="filters">
+   <div><label for="txSearch">بحث</label><input id="txSearch" type="search" placeholder="الملاحظة أو التصنيف أو المبلغ"></div>
+   <div><label for="txTypeFilter">النوع</label><select id="txTypeFilter"><option value="all">الكل</option><option value="income">الدخل</option><option value="expense">المصروف</option></select></div>
+   <div><label for="txCatFilter">التصنيف</label><select id="txCatFilter"><option value="all">كل التصنيفات</option></select></div>
+  </div>
+  <div class="grid" style="margin-top:9px"><div><label for="txFrom">من تاريخ</label><input id="txFrom" type="date"></div><div><label for="txTo">إلى تاريخ</label><input id="txTo" type="date"></div></div>
+  <div class="actions"><button type="button" class="secondary" id="txReset">مسح التصفية</button></div><p class="help" id="txCount"></p><div id="txList"></div>
+ </section>
+</section>
+
+<section class="pane" id="pane-budgets">
+ <section class="card"><h2>ميزانية شهرية أو حد إنفاق</h2>
+ <form id="budgetForm"><div class="grid">
+  <div><label for="budgetMonth">الشهر</label><input id="budgetMonth" type="month" required></div>
+  <div><label for="budgetCategory">التصنيف</label><select id="budgetCategory"><option value="الكل">كل المصروفات</option><option>طعام</option><option>مواصلات</option><option>سكن وفواتير</option><option>صحة</option><option>تسوق</option><option>تعليم</option><option>راتب</option><option>عمل إضافي</option><option>تحويل</option><option>أخرى</option></select></div>
+  <div><label for="budgetLimit">حد الإنفاق (شيكل)</label><input id="budgetLimit" type="number" min=".01" step="any" required></div>
+ </div><div class="actions"><button type="submit">حفظ الميزانية</button></div></form><p class="help">يُحسب الإنفاق بعد تحويل العملات إلى الشيكل وفق سعر كل معاملة. الميزانية تنبيه ومتابعة وليست حظرًا للإنفاق.</p></section>
+ <section class="card"><h2>الميزانيات المحفوظة</h2><div id="budgetList"></div></section>
+</section>
+
+<section class="pane" id="pane-reports">
+ <section class="card"><h2>التقرير الشهري</h2>
+ <div class="grid"><div><label for="reportMonth">اختر الشهر</label><input id="reportMonth" type="month"></div><div><label for="reportKind">نوع المعاملات</label><select id="reportKind"><option value="all">الدخل والمصروف</option><option value="income">الدخل فقط</option><option value="expense">المصروف فقط</option></select></div></div>
+ <div class="summary" style="margin-top:12px"><div class="stat"><div class="label">الدخل</div><strong class="green" id="repIncome">0.00 ₪</strong></div><div class="stat"><div class="label">المصروف</div><strong class="red" id="repExpense">0.00 ₪</strong></div><div class="stat"><div class="label">الصافي</div><strong id="repNet">0.00 ₪</strong></div></div>
+ <h3>حسب التصنيف</h3><div id="categoryReport"></div></section>
+</section>
+
+<section class="pane" id="pane-debts">
+ <section class="card"><h2 id="debtFormTitle">إضافة دين أو مبلغ مستحق</h2>
+ <form id="debtForm"><div class="grid">
+  <div><label for="debtType">النوع</label><select id="debtType"><option value="owed">دين عليّ (سأدفعه)</option><option value="due">مبلغ لي (سأقبضه)</option></select></div>
+  <div><label for="debtPerson">الشخص أو الجهة</label><input id="debtPerson" maxlength="120" placeholder="اسم أو وصف" required></div>
+  <div><label for="debtAmount">المبلغ الأصلي</label><input id="debtAmount" type="number" min=".01" step="any" required></div>
+  <div><label for="debtCurrency">العملة</label><select id="debtCurrency"><option value="ILS">شيكل (ILS)</option><option value="USD">دولار (USD)</option><option value="EUR">يورو (EUR)</option><option value="JOD">دينار أردني (JOD)</option><option value="TRY">ليرة تركية (TRY)</option><option value="GBP">جنيه إسترليني (GBP)</option><option value="SAR">ريال سعودي (SAR)</option><option value="AED">درهم إماراتي (AED)</option><option value="OTHER">أخرى (OTHER)</option></select></div>
+  <div><label for="debtRate">قيمة وحدة العملة بالشيكل</label><input id="debtRate" type="number" min=".000001" step="any" value="1" required></div>
+  <div><label for="debtRemaining">المتبقي بنفس العملة</label><input id="debtRemaining" type="number" min="0" step="any" required></div>
+  <div><label for="debtDueDate">تاريخ الاستحقاق (اختياري)</label><input id="debtDueDate" type="date"></div>
+  <div><label for="debtNote">ملاحظة (اختياري)</label><input id="debtNote" maxlength="250"></div>
+ </div><div class="actions"><button type="submit">حفظ الدين</button></div></form>
+ <p class="help">هذا سجل متابعة فقط؛ تسجيل دفعة هنا لا ينشئ معاملة دخل أو مصروف تلقائيًا. سجّل الدفعة أيضًا في قسم المعاملات حتى يبقى رصيدك دقيقًا.</p></section>
+ <section class="card"><h2>سجل الديون والمبالغ المستحقة</h2><div id="debtList"></div><div class="summary" style="margin-top:12px"><div class="stat"><div class="label">ديون عليّ (محوّلة للشيكل)</div><strong class="red" id="owedTotal">0.00 ₪</strong></div><div class="stat"><div class="label">مبالغ لي (محوّلة للشيكل)</div><strong class="green" id="dueTotal">0.00 ₪</strong></div><div class="stat"><div class="label">صافي المستحقات</div><strong id="debtNet">0.00 ₪</strong></div></div></section>
+</section>
+
+<section class="pane" id="pane-goals">
+ <section class="card"><h2 id="goalFormTitle">هدف ادخار جديد</h2>
+ <form id="goalForm"><div class="grid">
+  <div><label for="goalName">اسم الهدف</label><input id="goalName" maxlength="120" placeholder="مثال: صندوق الطوارئ" required></div>
+  <div><label for="goalTarget">المبلغ المستهدف (شيكل)</label><input id="goalTarget" type="number" min=".01" step="any" required></div>
+  <div><label for="goalSaved">المبلغ المدخر حاليًا (شيكل)</label><input id="goalSaved" type="number" min="0" step="any" value="0" required></div>
+  <div><label for="goalDate">التاريخ المستهدف (اختياري)</label><input id="goalDate" type="date"></div>
+ </div><div class="actions"><button type="submit">حفظ الهدف</button></div></form>
+ <p class="help">تحديث المبلغ هنا يتابع تقدم الهدف فقط ولا ينقل المال تلقائيًا من رصيدك. سجّل التحويل إلى الادخار كمعاملة إذا أردت إدراجه في حساباتك.</p></section>
+ <section class="card"><h2>أهدافي</h2><div id="goalList"></div></section>
+</section>
+
+<section class="pane" id="pane-backup">
+ <section class="card"><h2>النسخ الاحتياطي والاستعادة</h2><p>النسخة الاحتياطية تشمل المعاملات والميزانيات والديون وأهداف الادخار. احفظها في مكان خاص ولا ترفعها إلى GitHub أو ترسلها إلى أشخاص آخرين.</p>
+ <div class="actions"><button id="exportAll" type="button">تنزيل نسخة احتياطية كاملة</button><label class="filelabel" for="importAll">استعادة نسخة احتياطية</label><input class="hidden" id="importAll" type="file" accept=".json,application/json"><button id="clearAll" class="danger" type="button">حذف جميع بيانات التطبيق</button></div>
+ <p class="help">الاستعادة تستبدل البيانات الحالية بالكامل. تأكد من تنزيل نسخة احتياطية حديثة قبل الاستعادة.</p></section>
+ <section class="card"><h2>الخصوصية</h2><p class="notice">التطبيق يحفظ البيانات محليًا داخل المتصفح ولا يرسلها إلى خادم أو خدمة مزامنة. لكن التخزين المحلي ليس مشفرًا بحد ذاته؛ قد يفقد البيانات إذا مُسحت بيانات المتصفح أو تغيّر الجهاز. استخدم قفل الجهاز واحتفظ بنسخة احتياطية خاصة. لا تُدخل كلمات مرور أو بيانات بطاقات بنكية.</p><p class="smalltext">المبالغ القديمة التي لم يكن لها حقل عملة ستُعامل على أنها شيكل، وسعر تحويلها 1، حفاظًا على قيمة رصيدك الحالي.</p></section>
+</section>
 </main>
 <script>
-const KEY='hisabati_entries_v1'; let entries=[];
-try{entries=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(entries))entries=[]}catch(e){entries=[]}
-const $=id=>document.getElementById(id);
-$('date').value=new Date().toISOString().slice(0,10);
-const fmt=n=>new Intl.NumberFormat('ar',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
-function save(){localStorage.setItem(KEY,JSON.stringify(entries));render()}
-function render(){
- let inc=entries.filter(e=>e.kind==='income').reduce((s,e)=>s+e.amount,0);
- let exp=entries.filter(e=>e.kind==='expense').reduce((s,e)=>s+e.amount,0);
- $('balance').textContent=fmt(inc-exp);$('incomeTotal').textContent=fmt(inc);$('expenseTotal').textContent=fmt(exp);
- const box=$('entries');box.innerHTML='';
- if(!entries.length){box.innerHTML='<p class="small">لا توجد حركات بعد.</p>';return}
- [...entries].reverse().slice(0,100).forEach(e=>{
-  const div=document.createElement('div');div.className='item';
-  const left=document.createElement('div');const strong=document.createElement('strong');strong.textContent=e.category;
-  const detail=document.createElement('div');detail.className='small';detail.textContent=e.date+(e.note?' • '+e.note:'');
-  left.append(strong,detail);const right=document.createElement('div');right.className=e.kind==='income'?'positive':'negative';
-  right.textContent=(e.kind==='income'?'+':'−')+fmt(e.amount);
-  const del=document.createElement('button');del.textContent='حذف';del.style.width='auto';del.style.padding='6px 9px';del.style.margin='0';del.style.background='#647067';
-  del.onclick=()=>{if(confirm('حذف هذه الحركة؟')){entries=entries.filter(x=>x.id!==e.id);save()}};
-  const wrap=document.createElement('div');wrap.style.display='flex';wrap.style.alignItems='center';wrap.style.gap='8px';wrap.append(right,del);div.append(left,wrap);box.append(div);
- });
-}
-$('entryForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('amount').value);if(!Number.isFinite(amount)||amount<=0)return;
-entries.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),kind:$('kind').value,amount,category:$('category').value,date:$('date').value,note:$('note').value.trim()});
-save();$('amount').value='';$('note').value='';});
-$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify({app:'حساباتي',version:1,entries},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='hisabati-backup.json';a.click();URL.revokeObjectURL(a.href)};
-$('importBtn').onclick=()=>$('fileInput').click();
-$('fileInput').onchange=async()=>{const f=$('fileInput').files[0];if(!f)return;try{const data=JSON.parse(await f.text());const arr=Array.isArray(data)?data:data.entries;if(!Array.isArray(arr))throw Error();if(!confirm('سيتم استبدال السجلات الحالية بالنسخة المستوردة. متابعة؟'))return;entries=arr.filter(e=>e&&['income','expense'].includes(e.kind)&&Number.isFinite(Number(e.amount))&&Number(e.amount)>0).map(e=>({...e,amount:Number(e.amount)}));save();alert('تم استيراد النسخة.')}catch(e){alert('تعذر قراءة الملف. اختر نسخة صحيحة من حساباتي.')}finally{$('fileInput').value=''}};
-$('clearBtn').onclick=()=>{if(confirm('تحذير: سيتم حذف كل الحركات المحفوظة على هذا الجهاز. هل تريد المتابعة؟')){entries=[];save()}};
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
-render();
-</script></body></html>
+(()=>{'use strict';
+const KEYS={tx:'hisabati_entries_v1',bud:'hisabati_budgets_v1',debts:'hisabati_debts_v1',goals:'hisabati_goals_v1'};
+const $=id=>document.getElementById(id);let entries=[],budgets=[],debts=[],goals=[],editingTx=null;
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const monthNow=()=>today().slice(0,7);
+const parseArray=(key)=>{try{const x=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(x)?x:[]}catch(_){return []}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const currencyName=c=>({ILS:'₪',USD:'$',EUR:'€',JOD:'د.أ',TRY:'₺',GBP:'£',SAR:'ر.س',AED:'د.إ',OTHER:'وحدة'})[c]||c;
+const fmt=(n,c='ILS')=>`${Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})} ${currencyName(c)}`;
+const toILS=x=>Number(x.amount||0)*Number(x.rateToILS||1);
+function normalizeTx(x){if(!x||!['income','expense'].includes(x.kind)||!Number.isFinite(Number(x.amount))||Number(x.amount)<=0)return null;return {id:String(x.id||uid()),kind:x.kind,amount:Number(x.amount),currency:x.currency||'ILS',rateToILS:validRate(x.rateToILS,x.currency||'ILS'),category:String(x.category||'أخرى'),date:/^\d{4}-\d{2}-\d{2}$/.test(String(x.date||''))?x.date:today(),note:String(x.note||'')}} 
+function validRate(rate,currency){const n=Number(rate);return currency==='ILS'?1:(Number.isFinite(n)&&n>0?n:1)}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,9)}
+function saveAll(){try{localStorage.setItem(KEYS.tx,JSON.stringify(entries));localStorage.setItem(KEYS.bud,JSON.stringify(budgets));localStorage.setItem(KEYS.debts,JSON.stringify(debts));localStorage.setItem(KEYS.goals,JSON.stringify(goals))}catch(_){alert('تعذّر حفظ بعض البيانات. قد تكون مساحة التخزين ممتلئة؛ نزّل نسخة احتياطية إن أمكن.')}renderAll()}
+function init(){entries=parseArray(KEYS.tx).map(normalizeTx).filter(Boolean);budgets=parseArray(KEYS.bud).filter(x=>x&&x.month&&x.category&&Number(x.limit)>0).map(x=>({...x,id:String(x.id||uid()),limit:Number(x.limit)}));debts=parseArray(KEYS.debts).filter(x=>x&&Number(x.remaining)>=0).map(x=>({...x,id:String(x.id||uid()),amount:Number(x.amount||0),remaining:Number(x.remaining||0),currency:x.currency||'ILS',rateToILS:validRate(x.rateToILS,x.currency||'ILS')}));goals=parseArray(KEYS.goals).filter(x=>x&&Number(x.target)>0).map(x=>({...x,id:String(x.id||uid()),target:Number(x.target),saved:Number(x.saved||0)}))}
+function setTab(name){document.querySelectorAll('.tabbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='pane-'+name))}
+document.querySelectorAll('.tabbtn').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+function renderSummary(){const inc=entries.filter(x=>x.kind==='income').reduce((s,x)=>s+toILS(x),0),out=entries.filter(x=>x.kind==='expense').reduce((s,x)=>s+toILS(x),0);$('balance').textContent=fmt(inc-out);$('incomeTotal').textContent=fmt(inc);$('expenseTotal').textContent=fmt(out)}
+function renderTransactions(){const catSel=$('txCatFilter'),old=catSel.value;const cats=[...new Set(entries.map(x=>x.category))].sort((a,b)=>a.localeCompare(b,'ar'));catSel.innerHTML='<option value="all">كل التصنيفات</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');catSel.value=cats.includes(old)?old:'all';
+const q=$('txSearch').value.trim().toLocaleLowerCase(),kind=$('txTypeFilter').value,cat=catSel.value,from=$('txFrom').value,to=$('txTo').value;
+const list=entries.filter(x=>(kind==='all'||x.kind===kind)&&(cat==='all'||x.category===cat)&&(!from||x.date>=from)&&(!to||x.date<=to)&&(`${x.note} ${x.category} ${x.amount} ${x.date} ${x.currency}`.toLocaleLowerCase().includes(q))).sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id));
+$('txCount').textContent=`عرض ${list.length} من أصل ${entries.length} معاملة`;
+$('txList').innerHTML=list.length?list.map(x=>`<article class="rowitem"><div class="itemmain"><div class="itemtitle">${esc(x.category)}</div><div class="meta">${esc(x.date)} · ${x.kind==='income'?'دخل':'مصروف'} · ${esc(x.currency)}${x.currency!=='ILS'?` · سعر التحويل ${x.rateToILS}`:''}</div>${x.note?`<div>${esc(x.note)}</div>`:''}<div class="meta">القيمة بالشيكل: ${fmt(toILS(x))}</div></div><div class="side"><div class="amt ${x.kind==='income'?'green':'red'}">${x.kind==='income'?'+':'−'} ${fmt(x.amount,x.currency)}</div><div class="itemactions"><button class="small secondary" data-txedit="${esc(x.id)}">تعديل</button><button class="small danger" data-txdel="${esc(x.id)}">حذف</button></div></div></article>`).join(''):'<div class="empty">لا توجد معاملات مطابقة.</div>'}
+function resetTx(){editingTx=null;$('txForm').reset();$('txDate').value=today();$('txRate').value='1';$('txCurrency').value='ILS';$('txTitle').textContent='إضافة معاملة';$('txSubmit').textContent='حفظ المعاملة';$('txCancel').classList.add('hidden')}
+$('txCurrency').addEventListener('change',()=>{$('txRate').value=$('txCurrency').value==='ILS'?'1':''});
+$('txForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('txAmount').value),rate=validRate($('txRate').value,$('txCurrency').value);if(!(amount>0)||!(rate>0)){alert('تحقق من المبلغ وسعر التحويل.');return}const x={id:editingTx||uid(),kind:$('txKind').value,amount,currency:$('txCurrency').value,rateToILS:rate,category:$('txCategory').value,date:$('txDate').value||today(),note:$('txNote').value.trim()};if(editingTx){const i=entries.findIndex(t=>t.id===editingTx);if(i>=0)entries[i]=x}else entries.push(x);saveAll();resetTx()});
+$('txCancel').addEventListener('click',resetTx);
+$('txList').addEventListener('click',e=>{const eb=e.target.closest('[data-txedit]'),db=e.target.closest('[data-txdel]');if(eb){const x=entries.find(t=>t.id===eb.dataset.txedit);if(!x)return;editingTx=x.id;$('txKind').value=x.kind;$('txAmount').value=x.amount;$('txCurrency').value=x.currency;$('txRate').value=x.rateToILS;$('txCategory').value=x.category;if(!$('txCategory').value){const o=document.createElement('option');o.value=x.category;o.textContent=x.category;$('txCategory').appendChild(o);$('txCategory').value=x.category}$('txDate').value=x.date;$('txNote').value=x.note;$('txTitle').textContent='تعديل معاملة';$('txSubmit').textContent='حفظ التعديلات';$('txCancel').classList.remove('hidden');$('transactionCard').scrollIntoView({behavior:'smooth'})}else if(db){const x=entries.find(t=>t.id===db.dataset.txdel);if(x&&confirm('حذف هذه المعاملة؟')){entries=entries.filter(t=>t.id!==x.id);saveAll();if(editingTx===x.id)resetTx()}}});
+['txSearch','txTypeFilter','txCatFilter','txFrom','txTo'].forEach(id=>$(id).addEventListener(id==='txSearch'?'input':'change',renderTransactions));$('txReset').addEventListener('click',()=>{$('txSearch').value='';$('txTypeFilter').value='all';$('txCatFilter').value='all';$('txFrom').value='';$('txTo').value='';renderTransactions()});
+$('budgetMonth').value=monthNow();$('reportMonth').value=monthNow();
+$('budgetForm').addEventListener('submit',e=>{e.preventDefault();const month=$('budgetMonth').value,category=$('budgetCategory').value,limit=Number($('budgetLimit').value);if(!month||!(limit>0))return;const existing=budgets.find(b=>b.month===month&&b.category===category);if(existing)existing.limit=limit;else budgets.push({id:uid(),month,category,limit});saveAll();$('budgetForm').reset();$('budgetMonth').value=monthNow()});
+function spendFor(month,category){return entries.filter(x=>x.kind==='expense'&&x.date.slice(0,7)===month&&(category==='الكل'||x.category===category)).reduce((s,x)=>s+toILS(x),0)}
+function renderBudgets(){$('budgetList').innerHTML=budgets.length?budgets.slice().sort((a,b)=>b.month.localeCompare(a.month)).map(b=>{const spent=spendFor(b.month,b.category),pct=spent/b.limit*100;return `<article class="rowitem"><div class="itemmain"><div class="itemtitle">${esc(b.month)} · ${esc(b.category)}</div><div>${fmt(spent)} من ${fmt(b.limit)}</div><div class="progress"><span style="width:${Math.min(100,pct)}%"></span></div><div class="meta ${pct>=100?'red':pct>=80?'warning':''}">${pct.toFixed(1)}% مستخدم${pct>=100?' — تجاوزت الحد':''}</div></div><div class="side"><button class="small danger" data-budgetdel="${esc(b.id)}">حذف</button></div></article>`}).join(''):'<div class="empty">لم تضف ميزانيات بعد.</div>'}
+$('budgetList').addEventListener('click',e=>{const b=e.target.closest('[data-budgetdel]');if(b&&confirm('حذف هذه الميزانية؟')){budgets=budgets.filter(x=>x.id!==b.dataset.budgetdel);saveAll()}});
+$('reportMonth').addEventListener('change',renderReport);$('reportKind').addEventListener('change',renderReport);
+function renderReport(){const m=$('reportMonth').value||monthNow(),k=$('reportKind').value,subset=entries.filter(x=>x.date.slice(0,7)===m&&(k==='all'||x.kind===k));const inc=subset.filter(x=>x.kind==='income').reduce((s,x)=>s+toILS(x),0),out=subset.filter(x=>x.kind==='expense').reduce((s,x)=>s+toILS(x),0);$('repIncome').textContent=fmt(inc);$('repExpense').textContent=fmt(out);$('repNet').textContent=fmt(inc-out);const groups={};subset.forEach(x=>{const key=`${x.kind}|${x.category}`;groups[key]=(groups[key]||0)+toILS(x)});const rows=Object.entries(groups).sort((a,b)=>b[1]-a[1]);$('categoryReport').innerHTML=rows.length?`<div class="tablewrap"><table><thead><tr><th>النوع</th><th>التصنيف</th><th>الإجمالي بالشيكل</th></tr></thead><tbody>${rows.map(([key,val])=>{const [kind,cat]=key.split('|');return `<tr><td>${kind==='income'?'دخل':'مصروف'}</td><td>${esc(cat)}</td><td>${fmt(val)}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">لا توجد معاملات في هذا الشهر.</div>'}
+$('debtCurrency').addEventListener('change',()=>{$('debtRate').value=$('debtCurrency').value==='ILS'?'1':''});
+$('debtForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('debtAmount').value),remaining=Number($('debtRemaining').value),rate=validRate($('debtRate').value,$('debtCurrency').value);if(!(amount>0)||remaining<0||remaining>amount||!(rate>0)){alert('تحقق من المبلغ الأصلي والمتبقي وسعر التحويل. يجب ألا يتجاوز المتبقي المبلغ الأصلي.');return}debts.push({id:uid(),type:$('debtType').value,person:$('debtPerson').value.trim(),amount,remaining,currency:$('debtCurrency').value,rateToILS:rate,dueDate:$('debtDueDate').value,note:$('debtNote').value.trim()});saveAll();$('debtForm').reset();$('debtRate').value='1';$('debtCurrency').value='ILS';});
+function renderDebts(){const owed=debts.filter(x=>x.type==='owed').reduce((s,x)=>s+x.remaining*x.rateToILS,0),due=debts.filter(x=>x.type==='due').reduce((s,x)=>s+x.remaining*x.rateToILS,0);$('owedTotal').textContent=fmt(owed);$('dueTotal').textContent=fmt(due);$('debtNet').textContent=fmt(due-owed);$('debtList').innerHTML=debts.length?debts.map(x=>`<article class="rowitem"><div class="itemmain"><div class="itemtitle">${x.type==='owed'?'دين عليّ':'مبلغ لي'} · ${esc(x.person)}</div><div>المتبقي: ${fmt(x.remaining,x.currency)} (تقريبًا ${fmt(x.remaining*x.rateToILS)})</div><div class="meta">الأصل: ${fmt(x.amount,x.currency)}${x.dueDate?' · الاستحقاق: '+esc(x.dueDate):''}${x.note?' · '+esc(x.note):''}</div><div class="actions"><label style="margin:0;min-width:180px">تحديث المتبقي<input data-debtremaining="${esc(x.id)}" type="number" min="0" max="${x.amount}" step="any" value="${x.remaining}"></label><button class="small secondary" data-debtsave="${esc(x.id)}">حفظ المتبقي</button></div></div><div class="side"><button class="small danger" data-debtdel="${esc(x.id)}">حذف</button></div></article>`).join(''):'<div class="empty">لا توجد ديون أو مبالغ مسجلة.</div>'}
+$('debtList').addEventListener('click',e=>{const del=e.target.closest('[data-debtdel]'),save=e.target.closest('[data-debtsave]');if(del){if(confirm('حذف هذا السجل؟')){debts=debts.filter(x=>x.id!==del.dataset.debtdel);saveAll()}}else if(save){const x=debts.find(d=>d.id===save.dataset.debtsave),input=$(`debtRemaining_${save.dataset.debtsave}`)||document.querySelector(`[data-debtremaining="${CSS.escape(save.dataset.debtsave)}"]`);const n=Number(input?.value);if(x&&Number.isFinite(n)&&n>=0&&n<=x.amount){x.remaining=n;saveAll()}else alert('أدخل مبلغًا متبقيًا بين صفر والمبلغ الأصلي.')}});
+$('goalForm').addEventListener('submit',e=>{e.preventDefault();const target=Number($('goalTarget').value),saved=Number($('goalSaved').value);if(!(target>0)||saved<0){alert('تحقق من مبلغ الهدف والمدخرات.');return}goals.push({id:uid(),name:$('goalName').value.trim(),target,saved,date:$('goalDate').value});saveAll();$('goalForm').reset();$('goalSaved').value='0'});
+function renderGoals(){$('goalList').innerHTML=goals.length?goals.map(g=>{const pct=g.saved/g.target*100;return `<article class="rowitem"><div class="itemmain" style="width:100%"><div class="itemtitle">${esc(g.name)}</div><div>${fmt(g.saved)} من ${fmt(g.target)} شيكل</div><div class="progress"><span style="width:${Math.min(100,pct)}%"></span></div><div class="meta">${pct.toFixed(1)}% مكتمل · المتبقي ${fmt(Math.max(0,g.target-g.saved))}${g.date?' · التاريخ المستهدف: '+esc(g.date):''}</div><div class="actions"><label style="margin:0;min-width:190px">المدخر حاليًا<input data-goalsaved="${esc(g.id)}" type="number" min="0" step="any" value="${g.saved}"></label><button class="small secondary" data-goalsave="${esc(g.id)}">تحديث</button><button class="small danger" data-goaldel="${esc(g.id)}">حذف</button></div></div></article>`}).join(''):'<div class="empty">لم تضف أهداف ادخار بعد.</div>'}
+$('goalList').addEventListener('click',e=>{const del=e.target.closest('[data-goaldel]'),sv=e.target.closest('[data-goalsave]');if(del){if(confirm('حذف هدف الادخار؟')){goals=goals.filter(x=>x.id!==del.dataset.goaldel);saveAll()}}else if(sv){const g=goals.find(x=>x.id===sv.dataset.goalsave),input=document.querySelector(`[data-goalsaved="${CSS.escape(sv.dataset.goalsave)}"]`),n=Number(input?.value);if(g&&Number.isFinite(n)&&n>=0){g.saved=n;saveAll()}else alert('أدخل مبلغًا صحيحًا.')}});
+$('exportAll').addEventListener('click',()=>{const data={app:'حساباتي',version:2,exportedAt:new Date().toISOString(),entries,budgets,debts,goals};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='hisabati-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+$('importAll').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const data=JSON.parse(await f.text());const raw=Array.isArray(data)?data:data.entries;if(!Array.isArray(raw))throw 0;const ntx=raw.map(normalizeTx).filter(Boolean),nb=Array.isArray(data.budgets)?data.budgets.filter(x=>x&&x.month&&x.category&&Number(x.limit)>0):[],nd=Array.isArray(data.debts)?data.debts.filter(x=>x&&Number(x.remaining)>=0).map(x=>({...x,rateToILS:validRate(x.rateToILS,x.currency||'ILS')})):[],ng=Array.isArray(data.goals)?data.goals.filter(x=>x&&Number(x.target)>0):[];if(!confirm(`ستستبدل الاستعادة البيانات الحالية. المعاملات الصالحة: ${ntx.length}، الميزانيات: ${nb.length}، الديون: ${nd.length}، أهداف الادخار: ${ng.length}. هل تريد المتابعة؟`))return;entries=ntx;budgets=nb;debts=nd;goals=ng;saveAll();resetTx();alert('تمت استعادة البيانات محليًا.')}catch(_){alert('تعذر قراءة النسخة الاحتياطية. اختر ملف JSON صالحًا من تطبيق حساباتي.')}finally{e.target.value=''}});
+$('clearAll').addEventListener('click',()=>{if(confirm('تحذير: سيتم حذف جميع المعاملات والميزانيات والديون وأهداف الادخار من هذا الجهاز. هل أنشأت نسخة احتياطية وتريد المتابعة؟')){entries=[];budgets=[];debts=[];goals=[];saveAll();resetTx()}});
+function renderAll(){renderSummary();renderTransactions();renderBudgets();renderReport();renderDebts();renderGoals()}
+init();$('txDate').value=today();$('txRate').value='1';renderAll();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+})();
+</script>
+</body>
+</html>
